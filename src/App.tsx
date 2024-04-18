@@ -1,4 +1,4 @@
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "./App.css";
 import AppRouter from "./router/AppRouter";
 import { useAppDispatch } from "./hooks/hooks";
@@ -19,9 +19,9 @@ function App() {
   }, [dispatch]);
   
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppRouter />
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
