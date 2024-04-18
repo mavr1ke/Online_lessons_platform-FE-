@@ -22,7 +22,7 @@ export const fetchCourseDetails = createAsyncThunk<
   { rejectValue: string }
 >("courses/fetchCourseDetails", async (courseId, { rejectWithValue }) => {
   try {
-    const response = await instance.get<Course>(`/courses/${courseId}`);
+    const response = await instance.get<Course>(`/api/courses/${courseId}`);
     return response.data;
   } catch (error) {
     return rejectWithValue("Failed to fetch course details");

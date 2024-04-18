@@ -1,11 +1,16 @@
 import axios from "axios";
 
 // const BASE_URL = "http://localhost:8069/api";
-const BASE_URL = "/api";
+const BASE_URL = "/";
 
 const instance = axios.create({
   baseURL: BASE_URL,
   withCredentials: true,
+  proxy: {
+    protocol: "https",
+    host: "localhost",
+    port: 8069,
+  },
 });
 
 // Добавление интерцептора запроса
@@ -42,7 +47,10 @@ instance.interceptors.response.use(
         ] = `Bearer ${response.data.accessToken}`;
         return instance(originalRequest);
       } catch (refreshError) {
-        console.error("Unable to refresh token, please log in again", refreshError);
+        console.error(
+          "Unable to refresh token, please log in again",
+          refreshError
+        );
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
         window.location.href = "/log";

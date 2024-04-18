@@ -32,7 +32,7 @@ export const fetchCreatedCourses = createAsyncThunk<
 
     try {
       const response = await instance.get<Course[]>(
-        `/courses/created/${username}`
+        `/api/courses/created/${username}`
       );
       return response.data;
     } catch (error) {
@@ -50,7 +50,7 @@ export const deleteCreatedCourse = createAsyncThunk<
   "createdCourses/deleteCreatedCourse",
   async (courseId, { rejectWithValue }) => {
     try {
-      await instance.delete(`/courses/${courseId}`);
+      await instance.delete(`/api/courses/${courseId}`);
     } catch (error) {
       const axiosError = error as AxiosError;
       return rejectWithValue(axiosError.message || axiosError.message);

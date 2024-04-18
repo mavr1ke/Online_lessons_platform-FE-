@@ -22,7 +22,7 @@ export const fetchAvailableCourses = createAsyncThunk<Enrollment[], void, { reje
     const state = getState() as RootState;
     const username = state.user.userInfo?.name;
     try {
-      const response = await instance.get<Enrollment[]>(`/courses/available/${username}`);
+      const response = await instance.get<Enrollment[]>(`/api/courses/available/${username}`);
       return response.data;
     } catch (error) {
       const axiosError = error as AxiosError;

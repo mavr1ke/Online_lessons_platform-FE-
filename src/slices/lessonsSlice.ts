@@ -25,7 +25,7 @@ export const createLesson = createAsyncThunk<
   async ({ courseId, lessonData }, { rejectWithValue }) => {
     try {
       const response = await instance.post<Lesson>(
-        `/lessons/${courseId}`,
+        `/api/lessons/${courseId}`,
         lessonData
       );
       return response.data;
@@ -48,7 +48,7 @@ export const fetchLessons = createAsyncThunk<
   { rejectValue: string }
 >("lessons/fetchLessons", async (courseId, { rejectWithValue }) => {
   try {
-    const response = await instance.get<Lesson[]>(`/lessons/${courseId}`);
+    const response = await instance.get<Lesson[]>(`/api/lessons/${courseId}`);
     return response.data;
   } catch (err) {
     const error = err as AxiosError;

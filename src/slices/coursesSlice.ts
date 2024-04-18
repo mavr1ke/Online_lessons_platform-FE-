@@ -23,7 +23,7 @@ export const fetchCourses = createAsyncThunk<
   { rejectValue: string }
 >("courses/fetchCourses", async (_, { rejectWithValue }) => {
   try {
-    const response = await instance.get<Course[]>("/courses");
+    const response = await instance.get<Course[]>("/api/courses");
 
     return response.data;
   } catch (error) {
@@ -37,7 +37,7 @@ export const uploadFile = createAsyncThunk(
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const response = await instance.post("/files", formData, {
+      const response = await instance.post("/api/files", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data.message; 
@@ -62,7 +62,7 @@ export const createCourse = createAsyncThunk(
        const username = state.user.userInfo?.name;
 
     try {
-      const response = await instance.post(`/courses/${username}`, courseData, {
+      const response = await instance.post(`/api/courses/${username}`, courseData, {
         headers: { "Content-Type": "application/json" },
       });
       return response.data; // Предполагается, что ответ содержит данные созданного курса.
@@ -84,7 +84,7 @@ export const updateCourse = createAsyncThunk<Course, Course, { rejectValue: stri
   async (courseData, { rejectWithValue }) => {
     const { id, ...updateData } = courseData;
     try {
-      const response = await instance.put<Course>(`/courses/${id}`, updateData, {
+      const response = await instance.put<Course>(`/api/courses/${id}`, updateData, {
         headers: { "Content-Type": "application/json" },
       });
       return response.data; // Предполагается, что ответ содержит обновлённые данные курса.

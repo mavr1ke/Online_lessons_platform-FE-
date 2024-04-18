@@ -31,7 +31,7 @@ export const fetchCart = createAsyncThunk(
   "cart/fetchCart",
   async (cartId: number | undefined, { rejectWithValue }) => {
     try {
-      const response = await instance.get(`/cart/${cartId}`);
+      const response = await instance.get(`/api/cart/${cartId}`);
       console.log(response);
       
 
@@ -52,7 +52,7 @@ export const fetchAddToCart = createAsyncThunk(
     try {
       console.log(cartId, courseId);
 
-      const response = await instance.put(`/cart/add/${cartId}/${courseId}`);
+      const response = await instance.put(`/api/cart/add/${cartId}/${courseId}`);
       console.log(response);
 
       return response.data;
@@ -70,7 +70,7 @@ export const fetchDeleteCourseFromCart = createAsyncThunk(
     const courseId = addToCartData.courseId;
 
     try {
-      const response = await instance.delete(`/cart/${cartId}/${courseId}`);
+      const response = await instance.delete(`/api/cart/${cartId}/${courseId}`);
 
       return response.data;
     } catch (err) {
@@ -88,7 +88,7 @@ export const fetchDeleteAllCourseFromCart = createAsyncThunk<
   "cart/fetchDeleteAllCourseFromCart",
   async (cartId: number | undefined, { rejectWithValue }) => {
     try {
-      const response = await instance.delete(`/cart/clear/${cartId}`);
+      const response = await instance.delete(`/api/cart/clear/${cartId}`);
 
       return response.data;
     } catch (err) {
@@ -106,7 +106,7 @@ export const fetchBuyAllCoursesFromCart = createAsyncThunk<
   "cart/fetchBuyAllCoursesFromCart",
   async (cartId: number | undefined, { rejectWithValue }) => {
     try {
-      const response = await instance.put(`/cart/buy/${cartId}`);
+      const response = await instance.put(`/api/cart/buy/${cartId}`);
 
       return response.data;
     } catch (err) {

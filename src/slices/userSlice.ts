@@ -42,7 +42,7 @@ export const registerUser = createAsyncThunk<
   }
 >("user/register", async (userData, { rejectWithValue }) => {
   try {
-    const response = await instance.post("/users/register", userData);
+    const response = await instance.post("/api/users/register", userData);
     return response.data;
   } catch (err) {
     const error: AxiosError<string> = err as AxiosError<string>;
@@ -62,7 +62,7 @@ export const loginUser = createAsyncThunk<
   }
 >("user/login", async (credentials, { rejectWithValue }) => {
   try {
-    const response = await instance.post("/auth/login", credentials);
+    const response = await instance.post("/api/auth/login", credentials);
 
     localStorage.setItem("accessToken", response.data.accessToken);
     localStorage.setItem("refreshToken", response.data.refreshToken);
@@ -85,7 +85,7 @@ export const deleteUser = createAsyncThunk(
     console.log(state.user.userInfo);
 
     try {
-      const response = await instance.delete(`/users/delete/${username}`);
+      const response = await instance.delete(`/api/users/delete/${username}`);
       return response.data;
     } catch (err) {
       const error = err as AxiosError;
@@ -102,7 +102,7 @@ export const fetchCurrentUser = createAsyncThunk<
   }
 >("user/fetchCurrentUser", async (_, { rejectWithValue }) => {
   try {
-    const response = await instance.get("/auth/auth_info");
+    const response = await instance.get("/api/auth/auth_info");
     return response.data;
   } catch (err) {
     const error = err as AxiosError;

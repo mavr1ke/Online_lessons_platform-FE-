@@ -35,7 +35,7 @@ export const fetchUser = createAsyncThunk<
   const username = state.user.userInfo?.name;
   try {
     const response = await instance.get<RegisterResponse>(
-      `/users/account_info/${username}`
+      `/api/users/account_info/${username}`
     );
 
     return response.data;
@@ -61,7 +61,7 @@ export const changePassword = createAsyncThunk<
       console.log(changePasswordData);
 
       await instance.put(
-        `/users/change_password/${username}`,
+        `/api/users/change_password/${username}`,
         changePasswordData
       );
     } catch (err) {
